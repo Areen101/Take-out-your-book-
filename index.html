@@ -472,18 +472,23 @@
             {id: 40, title: 'Gone with the Wind', author: 'Margaret Mitchell', isbn: '978-1-41-652670-1', category: 'Romance', description: 'Love and survival during the Civil War.', available: true}
         ];
 
+        const DATA_VERSION = 2; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
 
         // Initialize data from localStorage or use defaults
         function initializeData() {
+            const storedVersion = localStorage.getItem('libraryDataVersion');
             const storedBooks = localStorage.getItem('libraryBooks');
-            if (storedBooks) {
-                allBooks = JSON.parse(storedBooks);
-            } else {
+
+            // If version doesn't match or no data exists, load default books
+            if (!storedBooks || parseInt(storedVersion) !== DATA_VERSION) {
                 allBooks = [...defaultBooks];
                 saveBooks();
+                localStorage.setItem('libraryDataVersion', DATA_VERSION);
+            } else {
+                allBooks = JSON.parse(storedBooks);
             }
         }
 
