@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Reservation System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        main {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            min-height: 60vh;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-button:hover {
+            color: #667eea;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .search-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .book-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .book-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .book-card .author {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-card .category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #f0f0f0;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .book-card .description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .status-badge.available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.reserved {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .reservations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .reservation-card {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reservation-info h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .reservation-info p {
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .reservation-card {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📚 Library Book Reservation System</h1>
+            <p class="subtitle">Browse and reserve your favorite books</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('books')">Available Books</button>
+            <button class="tab-button" onclick="showTab('reservations')">My Reservations</button>
+        </div>
+
+        <!-- Books Tab -->
+        <div id="books-tab" class="tab-content active">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search books by title, author, or category..." onkeyup="filterBooks()">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                <button class="filter-btn" onclick="filterByCategory('Fiction')">Fiction</button>
+                <button class="filter-btn" onclick="filterByCategory('Fantasy')">Fantasy</button>
+                <button class="filter-btn" onclick="filterByCategory('Science Fiction')">Sci-Fi</button>
+                <button class="filter-btn" onclick="filterByCategory('Romance')">Romance</button>
+                <button class="filter-btn" onclick="filterByCategory('Adventure')">Adventure</button>
+            </div>
+
+            <div id="books-grid" class="books-grid"></div>
+        </div>
+
+        <!-- Reservations Tab -->
+        <div id="reservations-tab" class="tab-content">
+            <div id="reservations-list" class="reservations-list"></div>
+        </div>
+    </main>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Reserve Book</h2>
+            <div id="modal-book-info"></div>
+            <form id="reservation-form" onsubmit="submitReservation(event)">
+                <div class="form-group">
+                    <label for="user-name">Your Name:</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Your Email:</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Library Book Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample books data
+        const defaultBooks = [
+            {id: 1, title: 'To Kill a Mockingbird', author: 'Harper Lee', isbn: '978-0-06-112008-4', category: 'Fiction', description: 'A gripping tale of racial injustice and childhood innocence.', available: true},
+            {id: 2, title: '1984', author: 'George Orwell', isbn: '978-0-452-28423-4', category: 'Fiction', description: 'A dystopian social science fiction novel.', available: true},
+            {id: 3, title: 'Pride and Prejudice', author: 'Jane Austen', isbn: '978-0-14-143951-8', category: 'Romance', description: 'A romantic novel of manners.', available: true},
+            {id: 4, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', isbn: '978-0-7432-7356-5', category: 'Fiction', description: 'A story of the Jazz Age.', available: true},
+            {id: 5, title: 'Moby-Dick', author: 'Herman Melville', isbn: '978-0-14-243724-7', category: 'Adventure', description: 'The saga of Captain Ahab.', available: true},
+            {id: 6, title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', isbn: '978-0-7475-3269-9', category: 'Fantasy', description: "A young wizard's journey begins.", available: true},
+            {id: 7, title: 'The Hobbit', author: 'J.R.R. Tolkien', isbn: '978-0-547-92822-7', category: 'Fantasy', description: 'A fantasy adventure of Bilbo Baggins.', available: true},
+            {id: 8, title: 'The Catcher in the Rye', author: 'J.D. Salinger', isbn: '978-0-316-76948-0', category: 'Fiction', description: 'The story of teenage rebellion.', available: true},
+            {id: 9, title: 'The Lord of the Rings', author: 'J.R.R. Tolkien', isbn: '978-0-618-57498-4', category: 'Fantasy', description: 'An epic high-fantasy novel.', available: true},
+            {id: 10, title: 'Animal Farm', author: 'George Orwell', isbn: '978-0-452-28424-1', category: 'Fiction', description: 'A satirical allegorical novella.', available: true},
+            {id: 11, title: 'Brave New World', author: 'Aldous Huxley', isbn: '978-0-06-085052-4', category: 'Science Fiction', description: 'A dystopian novel set in a futuristic society.', available: true},
+            {id: 12, title: 'The Chronicles of Narnia', author: 'C.S. Lewis', isbn: '978-0-06-023481-4', category: 'Fantasy', description: 'A series of seven fantasy novels.', available: true}
+        ];
+
+        let allBooks = [];
+        let currentFilter = 'all';
+        let selectedBookId = null;
+
+        // Initialize data from localStorage or use defaults
+        function initializeData() {
+            const storedBooks = localStorage.getItem('libraryBooks');
+            if (storedBooks) {
+                allBooks = JSON.parse(storedBooks);
+            } else {
+                allBooks = [...defaultBooks];
+                saveBooks();
+            }
+        }
+
+        // Save books to localStorage
+        function saveBooks() {
+            localStorage.setItem('libraryBooks', JSON.stringify(allBooks));
+        }
+
+        // Get reservations from localStorage
+        function getReservations() {
+            const stored = localStorage.getItem('libraryReservations');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Save reservations to localStorage
+        function saveReservations(reservations) {
+            localStorage.setItem('libraryReservations', JSON.stringify(reservations));
+        }
+
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeData();
+            displayBooks(allBooks);
+            loadReservations();
+        });
+
+        // Tab switching
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            event.target.classList.add('active');
+
+            if (tabName === 'reservations') {
+                loadReservations();
+            }
+        }
+
+        // Display books
+        function displayBooks(books) {
+            const booksGrid = document.getElementById('books-grid');
+
+            if (books.length === 0) {
+                booksGrid.innerHTML = '<div class="empty-message">No books found</div>';
+                return;
+            }
+
+            booksGrid.innerHTML = books.map(book => `
+                <div class="book-card" data-category="${book.category}">
+                    <h3>${book.title}</h3>
+                    <p class="author">by ${book.author}</p>
+                    <span class="category">${book.category}</span>
+                    <p class="description">${book.description}</p>
+                    <div class="status">
+                        <span class="status-badge ${book.available ? 'available' : 'reserved'}">
+                            ${book.available ? '✓ Available' : '✗ Reserved'}
+                        </span>
+                    </div>
+                    ${book.available ?
+                        `<button class="btn btn-primary" onclick="openReservationModal(${book.id}, '${book.title.replace(/'/g, "\\'")}', '${book.author}')">
+                            Reserve Book
+                        </button>` :
+                        `<button class="btn" disabled>Not Available</button>`
+                    }
+                </div>
+            `).join('');
+        }
+
+        // Filter books by search
+        function filterBooks() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            let filtered = allBooks;
+
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(book => book.category === currentFilter);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(book =>
+                    book.title.toLowerCase().includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm) ||
+                    book.category.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            displayBooks(filtered);
+        }
+
+        // Filter by category
+        function filterByCategory(category) {
+            currentFilter = category;
+
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let filtered = allBooks;
+            if (category !== 'all') {
+                filtered = allBooks.filter(book => book.category === category);
+            }
+
+            displayBooks(filtered);
+        }
+
+        // Open reservation modal
+        function openReservationModal(bookId, title, author) {
+            selectedBookId = bookId;
+            const modal = document.getElementById('reservation-modal');
+            const modalInfo = document.getElementById('modal-book-info');
+
+            modalInfo.innerHTML = `
+                <div style="background: #f9f9f9; padding: 1rem; border-radius: 5px; margin-bottom: 1.5rem;">
+                    <h3 style="color: #667eea; margin-bottom: 0.5rem;">${title}</h3>
+                    <p style="color: #666;">by ${author}</p>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('reservation-modal');
+            modal.style.display = 'none';
+            document.getElementById('reservation-form').reset();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('reservation-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Submit reservation
+        function submitReservation(event) {
+            event.preventDefault();
+
+            const userName = document.getElementById('user-name').value;
+            const userEmail = document.getElementById('user-email').value;
+
+            // Find the book
+            const book = allBooks.find(b => b.id === selectedBookId);
+            if (!book || !book.available) {
+                alert('Book is not available');
+                return;
+            }
+
+            // Create reservation
+            const reservations = getReservations();
+            const reservation = {
+                id: Date.now(),
+                book_id: selectedBookId,
+                title: book.title,
+                author: book.author,
+                user_name: userName,
+                user_email: userEmail,
+                reservation_date: new Date().toISOString()
+            };
+
+            reservations.push(reservation);
+            saveReservations(reservations);
+
+            // Mark book as unavailable
+            book.available = false;
+            saveBooks();
+
+            alert('Book reserved successfully!');
+            closeModal();
+            displayBooks(allBooks);
+            loadReservations();
+        }
+
+        // Load reservations
+        function loadReservations() {
+            const reservations = getReservations();
+            displayReservations(reservations);
+        }
+
+        // Display reservations
+        function displayReservations(reservations) {
+            const reservationsList = document.getElementById('reservations-list');
+
+            if (reservations.length === 0) {
+                reservationsList.innerHTML = '<div class="empty-message">No reservations yet</div>';
+                return;
+            }
+
+            reservationsList.innerHTML = reservations.map(res => `
+                <div class="reservation-card">
+                    <div class="reservation-info">
+                        <h3>${res.title}</h3>
+                        <p><strong>Author:</strong> ${res.author}</p>
+                        <p><strong>Reserved by:</strong> ${res.user_name} (${res.user_email})</p>
+                        <p><strong>Date:</strong> ${new Date(res.reservation_date).toLocaleString()}</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="returnBook(${res.book_id})">
+                        Return Book
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Return book
+        function returnBook(bookId) {
+            if (!confirm('Are you sure you want to return this book?')) {
+                return;
+            }
+
+            // Remove reservation
+            let reservations = getReservations();
+            reservations = reservations.filter(r => r.book_id !== bookId);
+            saveReservations(reservations);
+
+            // Mark book as available
+            const book = allBooks.find(b => b.id === bookId);
+            if (book) {
+                book.available = true;
+                saveBooks();
+            }
+
+            alert('Book returned successfully!');
+            displayBooks(allBooks);
+            loadReservations();
+        }
+    </script>
+</body>
+</html>
