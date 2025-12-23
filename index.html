@@ -165,6 +165,13 @@
             margin-bottom: 0.5rem;
         }
 
+        .book-card .rating {
+            color: #ffd700;
+            font-size: 1.1em;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
         .book-card .category {
             display: inline-block;
             padding: 0.3rem 0.8rem;
@@ -440,20 +447,20 @@
             {id: 3, title: 'Pride and Prejudice', author: 'Jane Austen', isbn: '978-0-14-143951-8', category: 'Romance', ageGroup: 'Adults', description: 'A romantic novel of manners.', available: true},
             {id: 4, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', isbn: '978-0-7432-7356-5', category: 'Fiction', ageGroup: 'Adults', description: 'A story of the Jazz Age.', available: true},
             {id: 5, title: 'Moby-Dick', author: 'Herman Melville', isbn: '978-0-14-243724-7', category: 'Adventure', ageGroup: 'Adults', description: 'The saga of Captain Ahab.', available: true},
-            {id: 6, title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', isbn: '978-0-7475-3269-9', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: "A young wizard's journey begins.", available: true},
-            {id: 7, title: 'The Hobbit', author: 'J.R.R. Tolkien', isbn: '978-0-547-92822-7', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A fantasy adventure of Bilbo Baggins.', available: true},
+            {id: 6, title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', isbn: '978-0-7475-3269-9', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: "A young wizard's journey begins.", rating: 4.5, available: true},
+            {id: 7, title: 'The Hobbit', author: 'J.R.R. Tolkien', isbn: '978-0-547-92822-7', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A fantasy adventure of Bilbo Baggins.', rating: 4.3, available: true},
             {id: 8, title: 'The Catcher in the Rye', author: 'J.D. Salinger', isbn: '978-0-316-76948-0', category: 'Fiction', ageGroup: 'Adults', description: 'The story of teenage rebellion.', available: true},
             {id: 9, title: 'The Lord of the Rings', author: 'J.R.R. Tolkien', isbn: '978-0-618-57498-4', category: 'Fantasy', ageGroup: 'Adults', description: 'An epic high-fantasy novel.', available: true},
             {id: 10, title: 'Animal Farm', author: 'George Orwell', isbn: '978-0-452-28424-1', category: 'Fiction', ageGroup: 'Adults', description: 'A satirical allegorical novella.', available: true},
             {id: 11, title: 'Brave New World', author: 'Aldous Huxley', isbn: '978-0-06-085052-4', category: 'Science Fiction', ageGroup: 'Adults', description: 'A dystopian novel set in a futuristic society.', available: true},
-            {id: 12, title: 'The Chronicles of Narnia', author: 'C.S. Lewis', isbn: '978-0-06-023481-4', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A series of seven fantasy novels.', available: true},
+            {id: 12, title: 'The Chronicles of Narnia', author: 'C.S. Lewis', isbn: '978-0-06-023481-4', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A series of seven fantasy novels.', rating: 4.2, available: true},
             {id: 13, title: 'Jane Eyre', author: 'Charlotte Bronte', isbn: '978-0-14-144114-6', category: 'Romance', ageGroup: 'Adults', description: 'A compelling tale of love and independence.', available: true},
             {id: 14, title: 'Wuthering Heights', author: 'Emily Bronte', isbn: '978-0-14-143955-6', category: 'Romance', ageGroup: 'Adults', description: 'A passionate story of love and revenge.', available: true},
             {id: 15, title: 'The Odyssey', author: 'Homer', isbn: '978-0-14-026886-7', category: 'Adventure', ageGroup: 'Adults', description: 'The epic journey of Odysseus.', available: true},
             {id: 16, title: 'Frankenstein', author: 'Mary Shelley', isbn: '978-0-14-143947-1', category: 'Science Fiction', ageGroup: 'Adults', description: 'The modern Prometheus and his creation.', available: true},
             {id: 17, title: 'Dracula', author: 'Bram Stoker', isbn: '978-0-14-143984-6', category: 'Fiction', ageGroup: 'Adults', description: 'The timeless vampire tale.', available: true},
             {id: 18, title: 'The Picture of Dorian Gray', author: 'Oscar Wilde', isbn: '978-0-14-143957-0', category: 'Fiction', ageGroup: 'Adults', description: 'A philosophical novel about beauty and morality.', available: true},
-            {id: 19, title: 'Alice in Wonderland', author: 'Lewis Carroll', isbn: '978-0-14-143761-3', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: "Alice's magical journey down the rabbit hole.", available: true},
+            {id: 19, title: 'Alice in Wonderland', author: 'Lewis Carroll', isbn: '978-0-14-143761-3', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: "Alice's magical journey down the rabbit hole.", rating: 4.0, available: true},
             {id: 20, title: 'The Secret Garden', author: 'Frances Hodgson Burnett', isbn: '978-0-14-136633-2', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A transformative tale of healing and growth.', available: true},
             {id: 21, title: 'Little Women', author: 'Louisa May Alcott', isbn: '978-0-14-143966-2', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'The lives and loves of the March sisters.', available: true},
             {id: 22, title: 'The Count of Monte Cristo', author: 'Alexandre Dumas', isbn: '978-0-14-044926-6', category: 'Adventure', ageGroup: 'Adults', description: 'An epic tale of betrayal and revenge.', available: true},
@@ -475,21 +482,21 @@
             {id: 38, title: 'Life of Pi', author: 'Yann Martel', isbn: '978-0-15-602732-1', category: 'Adventure', ageGroup: 'Adults', description: 'A boy, a tiger, and an unforgettable journey.', available: true},
             {id: 39, title: 'The Kite Runner', author: 'Khaled Hosseini', isbn: '978-1-59-448000-3', category: 'Fiction', ageGroup: 'Adults', description: 'A powerful story of friendship and redemption.', available: true},
             {id: 40, title: 'Gone with the Wind', author: 'Margaret Mitchell', isbn: '978-1-41-652670-1', category: 'Romance', ageGroup: 'Adults', description: 'Love and survival during the Civil War.', available: true},
-            {id: 41, title: 'Charlotte\'s Web', author: 'E.B. White', isbn: '978-0-06-440055-8', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A heartwarming story of friendship between a pig and a spider.', available: true},
-            {id: 42, title: 'Matilda', author: 'Roald Dahl', isbn: '978-0-14-241037-0', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A brilliant girl with magical powers stands up to adults.', available: true},
+            {id: 41, title: 'Charlotte\'s Web', author: 'E.B. White', isbn: '978-0-06-440055-8', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A heartwarming story of friendship between a pig and a spider.', rating: 4.2, available: true},
+            {id: 42, title: 'Matilda', author: 'Roald Dahl', isbn: '978-0-14-241037-0', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A brilliant girl with magical powers stands up to adults.', rating: 4.5, available: true},
             {id: 43, title: 'The BFG', author: 'Roald Dahl', isbn: '978-0-14-240314-3', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: 'A Big Friendly Giant and a little girl save the world.', available: true},
             {id: 44, title: 'Charlie and the Chocolate Factory', author: 'Roald Dahl', isbn: '978-0-14-241030-1', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: 'A magical tour through Willy Wonka\'s chocolate factory.', available: true},
-            {id: 45, title: 'Percy Jackson and the Lightning Thief', author: 'Rick Riordan', isbn: '978-0-78-838029-1', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A boy discovers he\'s the son of a Greek god.', available: true},
-            {id: 46, title: 'The Lion, the Witch and the Wardrobe', author: 'C.S. Lewis', isbn: '978-0-06-076577-6', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: 'Four children discover a magical land through a wardrobe.', available: true},
-            {id: 47, title: 'Where the Wild Things Are', author: 'Maurice Sendak', isbn: '978-0-06-025492-6', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'Max\'s wild imagination takes him on an adventure.', available: true},
-            {id: 48, title: 'A Wrinkle in Time', author: 'Madeleine L\'Engle', isbn: '978-0-31-238761-1', category: 'Science Fiction', ageGroup: 'Kids (9-12)', description: 'A journey through time and space to rescue a father.', available: true},
+            {id: 45, title: 'Percy Jackson and the Lightning Thief', author: 'Rick Riordan', isbn: '978-0-78-838029-1', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A boy discovers he\'s the son of a Greek god.', rating: 4.5, available: true},
+            {id: 46, title: 'The Lion, the Witch and the Wardrobe', author: 'C.S. Lewis', isbn: '978-0-06-076577-6', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: 'Four children discover a magical land through a wardrobe.', rating: 4.2, available: true},
+            {id: 47, title: 'Where the Wild Things Are', author: 'Maurice Sendak', isbn: '978-0-06-025492-6', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'Max\'s wild imagination takes him on an adventure.', rating: 4.3, available: true},
+            {id: 48, title: 'A Wrinkle in Time', author: 'Madeleine L\'Engle', isbn: '978-0-31-238761-1', category: 'Science Fiction', ageGroup: 'Kids (9-12)', description: 'A journey through time and space to rescue a father.', rating: 4.0, available: true},
             {id: 49, title: 'The Giving Tree', author: 'Shel Silverstein', isbn: '978-0-06-025665-4', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A tree\'s unconditional love for a boy.', available: true},
             {id: 50, title: 'Anne of Green Gables', author: 'L.M. Montgomery', isbn: '978-0-14-036748-0', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'An imaginative orphan girl finds her home.', available: true},
             {id: 51, title: 'The Tale of Peter Rabbit', author: 'Beatrix Potter', isbn: '978-0-72-326144-1', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A mischievous rabbit\'s adventure in Mr. McGregor\'s garden.', available: true},
             {id: 52, title: 'The Wind in the Willows', author: 'Kenneth Grahame', isbn: '978-0-14-036250-8', category: 'Adventure', ageGroup: 'Kids (6-8)', description: 'Adventures of Mole, Rat, Toad, and Badger.', available: true},
             {id: 53, title: 'Bridge to Terabithia', author: 'Katherine Paterson', isbn: '978-0-06-073401-7', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'Two friends create a magical kingdom in the woods.', available: true},
             {id: 54, title: 'The Phantom Tollbooth', author: 'Norton Juster', isbn: '978-0-39-480670-1', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A bored boy embarks on an adventure in a magical land.', available: true},
-            {id: 55, title: 'Holes', author: 'Louis Sachar', isbn: '978-0-44-042865-9', category: 'Adventure', ageGroup: 'Kids (9-12)', description: 'A boy sent to a desert detention center uncovers a mystery.', available: true},
+            {id: 55, title: 'Holes', author: 'Louis Sachar', isbn: '978-0-44-042865-9', category: 'Adventure', ageGroup: 'Kids (9-12)', description: 'A boy sent to a desert detention center uncovers a mystery.', rating: 4.0, available: true},
             {id: 56, title: 'The Shining', author: 'Stephen King', isbn: '978-0-38-512167-5', category: 'Fiction', ageGroup: 'Adults', description: 'A family\'s stay at an isolated hotel turns terrifying.', available: true},
             {id: 57, title: 'It', author: 'Stephen King', isbn: '978-1-50-116114-2', category: 'Fiction', ageGroup: 'Adults', description: 'A group of friends battle an ancient evil entity.', available: true},
             {id: 58, title: 'The Stand', author: 'Stephen King', isbn: '978-0-30-774365-5', category: 'Fiction', ageGroup: 'Adults', description: 'Survivors of a plague face the ultimate battle of good vs evil.', available: true},
@@ -512,7 +519,7 @@
             {id: 75, title: 'A Little Princess', author: 'Frances Hodgson Burnett', isbn: '978-0-14-036675-9', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A wealthy girl faces hardship with grace and imagination.', available: true},
             {id: 76, title: 'The Fault in Our Stars', author: 'John Green', isbn: '978-0-14-242417-9', category: 'Fiction', ageGroup: 'Kids (13+)', description: 'Two teens with cancer fall in love.', available: true},
             {id: 77, title: 'The Lovely Bones', author: 'Alice Sebold', isbn: '978-0-31-636881-7', category: 'Fiction', ageGroup: 'Adults', description: 'A murdered girl watches over her family from heaven.', available: true},
-            {id: 78, title: 'Wonder', author: 'R.J. Palacio', isbn: '978-0-37-586902-2', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'A boy with facial differences starts mainstream school.', available: true},
+            {id: 78, title: 'Wonder', author: 'R.J. Palacio', isbn: '978-0-37-586902-2', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'A boy with facial differences starts mainstream school.', rating: 4.5, available: true},
             {id: 79, title: 'The Color Purple', author: 'Alice Walker', isbn: '978-0-15-619235-5', category: 'Fiction', ageGroup: 'Adults', description: 'An African American woman\'s journey to self-discovery.', available: true},
             {id: 80, title: 'Tuck Everlasting', author: 'Natalie Babbitt', isbn: '978-0-31-236981-2', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'A girl discovers a family who will live forever.', available: true},
             {id: 81, title: 'Eragon', author: 'Christopher Paolini', isbn: '978-0-37-582670-4', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A farm boy becomes a dragon rider.', available: true},
@@ -526,13 +533,13 @@
             {id: 89, title: 'The Graveyard Book', author: 'Neil Gaiman', isbn: '978-0-06-053092-1', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A boy raised by ghosts in a graveyard.', available: true},
             {id: 90, title: 'Jonathan Strange & Mr Norrell', author: 'Susanna Clarke', isbn: '978-1-58-234416-0', category: 'Fantasy', ageGroup: 'Adults', description: 'Two magicians bring magic back to England.', available: true},
             {id: 91, title: 'Ready Player One', author: 'Ernest Cline', isbn: '978-0-30-788743-6', category: 'Science Fiction', ageGroup: 'Adults', description: 'A virtual reality treasure hunt in a dystopian future.', available: true},
-            {id: 92, title: 'The Giver', author: 'Lois Lowry', isbn: '978-0-54-405798-8', category: 'Science Fiction', ageGroup: 'Kids (9-12)', description: 'A boy discovers the dark truth of his perfect society.', available: true},
+            {id: 92, title: 'The Giver', author: 'Lois Lowry', isbn: '978-0-54-405798-8', category: 'Science Fiction', ageGroup: 'Kids (9-12)', description: 'A boy discovers the dark truth of his perfect society.', rating: 4.1, available: true},
             {id: 93, title: 'Neuromancer', author: 'William Gibson', isbn: '978-0-44-100384-1', category: 'Science Fiction', ageGroup: 'Adults', description: 'A hacker navigates cyberspace in a dystopian future.', available: true},
             {id: 94, title: 'Snow Crash', author: 'Neal Stephenson', isbn: '978-0-55-308853-3', category: 'Science Fiction', ageGroup: 'Adults', description: 'A hacker fights a computer virus in virtual reality.', available: true},
-            {id: 95, title: 'The Hunger Games', author: 'Suzanne Collins', isbn: '978-0-43-902348-9', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'Teens fight to the death in a televised spectacle.', available: true},
+            {id: 95, title: 'The Hunger Games', author: 'Suzanne Collins', isbn: '978-0-43-902348-9', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'Teens fight to the death in a televised spectacle.', rating: 4.5, available: true},
             {id: 96, title: 'Fahrenheit 451', author: 'Ray Bradbury', isbn: '978-1-45-113251-1', category: 'Science Fiction', ageGroup: 'Adults', description: 'A fireman burns books in a future where reading is illegal.', available: true},
             {id: 97, title: 'The Time Machine', author: 'H.G. Wells', isbn: '978-0-48-128472-4', category: 'Science Fiction', ageGroup: 'Adults', description: 'A man travels to the distant future.', available: true},
-            {id: 98, title: 'Divergent', author: 'Veronica Roth', isbn: '978-0-06-202402-2', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'A girl defies her faction-based society.', available: true},
+            {id: 98, title: 'Divergent', author: 'Veronica Roth', isbn: '978-0-06-202402-2', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'A girl defies her faction-based society.', rating: 4.2, available: true},
             {id: 99, title: 'The War of the Worlds', author: 'H.G. Wells', isbn: '978-0-48-129506-5', category: 'Science Fiction', ageGroup: 'Adults', description: 'Martians invade Earth with devastating technology.', available: true},
             {id: 100, title: 'Do Androids Dream of Electric Sheep?', author: 'Philip K. Dick', isbn: '978-0-34-540852-0', category: 'Science Fiction', ageGroup: 'Adults', description: 'A bounty hunter tracks rogue androids.', available: true},
             {id: 101, title: 'Outlander', author: 'Diana Gabaldon', isbn: '978-0-44-022256-8', category: 'Romance', ageGroup: 'Adults', description: 'A WWII nurse travels back to 18th century Scotland.', available: true},
@@ -555,20 +562,20 @@
             {id: 118, title: 'The Beach', author: 'Alex Garland', isbn: '978-1-57-322831-4', category: 'Adventure', ageGroup: 'Adults', description: 'Backpackers discover a hidden beach paradise.', available: true},
             {id: 119, title: 'The Swiss Family Robinson', author: 'Johann David Wyss', isbn: '978-0-14-036671-1', category: 'Adventure', ageGroup: 'Kids (9-12)', description: 'A shipwrecked family builds a new life on a deserted island.', available: true},
             {id: 120, title: 'Kon-Tiki', author: 'Thor Heyerdahl', isbn: '978-0-67-172565-9', category: 'Adventure', ageGroup: 'Adults', description: 'A daring ocean voyage on a primitive raft.', available: true},
-            {id: 121, title: 'Goodnight Moon', author: 'Margaret Wise Brown', isbn: '978-0-06-077583-6', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A soothing bedtime story for little ones.', available: true},
-            {id: 122, title: 'The Very Hungry Caterpillar', author: 'Eric Carle', isbn: '978-0-39-922690-1', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A caterpillar eats its way through the week.', available: true},
+            {id: 121, title: 'Goodnight Moon', author: 'Margaret Wise Brown', isbn: '978-0-06-077583-6', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A soothing bedtime story for little ones.', rating: 4.2, available: true},
+            {id: 122, title: 'The Very Hungry Caterpillar', author: 'Eric Carle', isbn: '978-0-39-922690-1', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A caterpillar eats its way through the week.', rating: 4.4, available: true},
             {id: 123, title: 'Brown Bear, Brown Bear, What Do You See?', author: 'Bill Martin Jr.', isbn: '978-0-80-508201-2', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A rhythmic introduction to colors and animals.', available: true},
-            {id: 124, title: 'Green Eggs and Ham', author: 'Dr. Seuss', isbn: '978-0-39-400016-6', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'Sam-I-Am tries to convince a friend to try new foods.', available: true},
-            {id: 125, title: 'The Cat in the Hat', author: 'Dr. Seuss', isbn: '978-0-39-480001-8', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A mischievous cat brings chaos on a rainy day.', available: true},
+            {id: 124, title: 'Green Eggs and Ham', author: 'Dr. Seuss', isbn: '978-0-39-400016-6', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'Sam-I-Am tries to convince a friend to try new foods.', rating: 4.3, available: true},
+            {id: 125, title: 'The Cat in the Hat', author: 'Dr. Seuss', isbn: '978-0-39-480001-8', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A mischievous cat brings chaos on a rainy day.', rating: 4.2, available: true},
             {id: 126, title: 'Corduroy', author: 'Don Freeman', isbn: '978-0-14-056543-8', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'A teddy bear searches for a missing button.', available: true},
-            {id: 127, title: 'Curious George', author: 'H.A. Rey', isbn: '978-0-39-515003-8', category: 'Adventure', ageGroup: 'Kids (3-5)', description: 'A curious monkey gets into all sorts of mischief.', available: true},
+            {id: 127, title: 'Curious George', author: 'H.A. Rey', isbn: '978-0-39-515003-8', category: 'Adventure', ageGroup: 'Kids (3-5)', description: 'A curious monkey gets into all sorts of mischief.', rating: 4.2, available: true},
             {id: 128, title: 'If You Give a Mouse a Cookie', author: 'Laura Numeroff', isbn: '978-0-06-024587-8', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'One thing leads to another in this circular tale.', available: true},
-            {id: 129, title: 'Winnie-the-Pooh', author: 'A.A. Milne', isbn: '978-0-52-555805-1', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'Adventures in the Hundred Acre Wood.', available: true},
+            {id: 129, title: 'Winnie-the-Pooh', author: 'A.A. Milne', isbn: '978-0-52-555805-1', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'Adventures in the Hundred Acre Wood.', rating: 4.3, available: true},
             {id: 130, title: 'The Tale of Despereaux', author: 'Kate DiCamillo', isbn: '978-0-76-362702-4', category: 'Fantasy', ageGroup: 'Kids (6-8)', description: 'A brave mouse, a princess, and a quest.', available: true},
             {id: 131, title: 'Stuart Little', author: 'E.B. White', isbn: '978-0-06-026395-5', category: 'Adventure', ageGroup: 'Kids (6-8)', description: 'A mouse born to a human family has big adventures.', available: true},
             {id: 132, title: 'The Velveteen Rabbit', author: 'Margery Williams', isbn: '978-0-38-573717-7', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A toy rabbit becomes real through love.', available: true},
             {id: 133, title: 'Paddington Bear', author: 'Michael Bond', isbn: '978-0-06-196273-4', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A bear from Peru finds a home in London.', available: true},
-            {id: 134, title: 'The Little Prince', author: 'Antoine de Saint-Exupéry', isbn: '978-0-15-652820-1', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A prince from a tiny asteroid explores the universe.', available: true},
+            {id: 134, title: 'The Little Prince', author: 'Antoine de Saint-Exupéry', isbn: '978-0-15-652820-1', category: 'Fiction', ageGroup: 'Kids (6-8)', description: 'A prince from a tiny asteroid explores the universe.', rating: 4.3, available: true},
             {id: 135, title: 'Number the Stars', author: 'Lois Lowry', isbn: '978-0-54-732733-9', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'A Danish girl helps save her Jewish friend during WWII.', available: true},
             {id: 136, title: 'The Indian in the Cupboard', author: 'Lynne Reid Banks', isbn: '978-0-38-017051-5', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A toy Indian comes to life in a magic cupboard.', available: true},
             {id: 137, title: 'Maniac Magee', author: 'Jerry Spinelli', isbn: '978-0-31-680906-8', category: 'Fiction', ageGroup: 'Kids (9-12)', description: 'An orphan becomes a legend in his town.', available: true},
@@ -582,7 +589,7 @@
             {id: 145, title: 'The 5th Wave', author: 'Rick Yancey', isbn: '978-0-39-915924-7', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'Earth faces alien invasion in waves.', available: true}
         ];
 
-        const DATA_VERSION = 7; // Increment this when book list changes
+        const DATA_VERSION = 8; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -654,8 +661,9 @@
                 <div class="book-card" data-category="${book.category}">
                     <h3>${book.title}</h3>
                     <p class="author">by ${book.author}</p>
+                    ${book.rating ? `<div class="rating">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
                     <span class="category">${book.category}</span>
-                    <span class="category" style="background: ${book.ageGroup === 'Kids' ? '#ffe4f2' : '#e8e8e8'};">${book.ageGroup === 'Kids' ? 'Kids' : 'Adults'}</span>
+                    <span class="category" style="background: ${book.ageGroup.includes('Kids') ? '#ffe4f2' : '#e8e8e8'};">${book.ageGroup}</span>
                     <p class="description">${book.description}</p>
                     <div class="status">
                         <span class="status-badge ${book.available ? 'available' : 'reserved'}">
