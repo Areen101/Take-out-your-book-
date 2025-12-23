@@ -385,8 +385,8 @@
 
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
-                <button class="filter-btn" onclick="filterByAgeGroup('Kids')">👶 Kids</button>
-                <button class="filter-btn" onclick="filterByAgeGroup('Adults')">👨 Adults</button>
+                <button class="filter-btn" onclick="filterByAgeGroup('Kids')">Kids</button>
+                <button class="filter-btn" onclick="filterByAgeGroup('Adults')">Adults</button>
                 <button class="filter-btn" onclick="filterByCategory('Fiction')">Fiction</button>
                 <button class="filter-btn" onclick="filterByCategory('Fantasy')">Fantasy</button>
                 <button class="filter-btn" onclick="filterByCategory('Science Fiction')">Sci-Fi</button>
@@ -474,7 +474,7 @@
             {id: 40, title: 'Gone with the Wind', author: 'Margaret Mitchell', isbn: '978-1-41-652670-1', category: 'Romance', ageGroup: 'Adults', description: 'Love and survival during the Civil War.', available: true}
         ];
 
-        const DATA_VERSION = 3; // Increment this when book list changes
+        const DATA_VERSION = 4; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -547,7 +547,7 @@
                     <h3>${book.title}</h3>
                     <p class="author">by ${book.author}</p>
                     <span class="category">${book.category}</span>
-                    <span class="category" style="background: ${book.ageGroup === 'Kids' ? '#ffe4f2' : '#e8e8e8'};">${book.ageGroup === 'Kids' ? '👶 Kids' : '👨 Adults'}</span>
+                    <span class="category" style="background: ${book.ageGroup === 'Kids' ? '#ffe4f2' : '#e8e8e8'};">${book.ageGroup === 'Kids' ? 'Kids' : 'Adults'}</span>
                     <p class="description">${book.description}</p>
                     <div class="status">
                         <span class="status-badge ${book.available ? 'available' : 'reserved'}">
