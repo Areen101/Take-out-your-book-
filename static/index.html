@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Reservation System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📚 Library Book Reservation System</h1>
+            <p class="subtitle">Browse and reserve your favorite books</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('books')">Available Books</button>
+            <button class="tab-button" onclick="showTab('reservations')">My Reservations</button>
+        </div>
+
+        <!-- Books Tab -->
+        <div id="books-tab" class="tab-content active">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search books by title, author, or category..." onkeyup="filterBooks()">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                <button class="filter-btn" onclick="filterByCategory('Fiction')">Fiction</button>
+                <button class="filter-btn" onclick="filterByCategory('Fantasy')">Fantasy</button>
+                <button class="filter-btn" onclick="filterByCategory('Science Fiction')">Sci-Fi</button>
+                <button class="filter-btn" onclick="filterByCategory('Romance')">Romance</button>
+                <button class="filter-btn" onclick="filterByCategory('Adventure')">Adventure</button>
+            </div>
+
+            <div id="books-grid" class="books-grid">
+                <!-- Books will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Reservations Tab -->
+        <div id="reservations-tab" class="tab-content">
+            <div id="reservations-list" class="reservations-list">
+                <!-- Reservations will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Reserve Book</h2>
+            <div id="modal-book-info"></div>
+            <form id="reservation-form" onsubmit="submitReservation(event)">
+                <div class="form-group">
+                    <label for="user-name">Your Name:</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Your Email:</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Library Book Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
