@@ -1,6 +1,24 @@
 # Library Book Reservation System
 
-A modern web application for browsing and reserving library books. Built with Flask (Python) backend and vanilla JavaScript frontend.
+A modern web application for browsing and reserving library books.
+
+## Live Demo - Preview in Your Browser
+
+**You can use the app directly in your browser without any installation!**
+
+Once GitHub Pages is enabled for this repository, you can access the app at:
+```
+https://Areen101.github.io/Take-out-your-book-/
+```
+
+Or simply open `index.html` directly in any web browser on your iPad, phone, or computer.
+
+The standalone version uses browser localStorage to save your data - no server needed!
+
+## Two Versions Available
+
+1. **Standalone Version** (`index.html`) - Works directly in browser, perfect for iPad/mobile
+2. **Server Version** - Full Flask backend with Python (see installation instructions below)
 
 ## Features
 
@@ -103,6 +121,20 @@ The database is pre-populated with 12 classic books including:
 ## Development
 
 To modify the sample books, edit the `sample_books` list in `app.py` before first run, or delete `library.db` and restart the application.
+
+## Enabling GitHub Pages
+
+To enable the live preview through GitHub Pages:
+
+1. Go to your repository on GitHub
+2. Click on **Settings**
+3. Scroll down to **Pages** in the left sidebar
+4. Under **Source**, select **Deploy from a branch**
+5. Select **branch: claude/add-book-reservations-tjlKu** and **/ (root)**
+6. Click **Save**
+7. Wait a few minutes, then visit: `https://Areen101.github.io/Take-out-your-book-/`
+
+Your app will be live and accessible from any browser, including Safari on iPad!
 
 ## License
 
