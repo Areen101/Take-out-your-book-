@@ -423,6 +423,10 @@
                     <label for="user-email">Your Email:</label>
                     <input type="email" id="user-email" required>
                 </div>
+                <div class="form-group">
+                    <label for="return-date">Return Date:</label>
+                    <input type="date" id="return-date" required>
+                </div>
                 <button type="submit" class="btn btn-primary">Confirm Reservation</button>
             </form>
         </div>
@@ -618,7 +622,7 @@
             {id: 179, title: "Olivia", author: "Ian Falconer", isbn: "978-0-68-982953-1", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A pig who is good at lots of things, especially wearing people out.", rating: 4.15, available: true},
         ];
 
-        const DATA_VERSION = 13; // Increment this when book list changes
+        const DATA_VERSION = 14; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -792,6 +796,7 @@
             const userName = document.getElementById('user-name').value;
             const userEmail = document.getElementById('user-email').value;
 
+            const returnDate = document.getElementById('return-date').value;
             // Find the book
             const book = allBooks.find(b => b.id === selectedBookId);
             if (!book || !book.available) {
@@ -810,6 +815,7 @@
                 user_email: userEmail,
                 reservation_date: new Date().toISOString()
             };
+                return_date: returnDate,
 
             reservations.push(reservation);
             saveReservations(reservations);
@@ -847,6 +853,7 @@
                         <p><strong>Reserved by:</strong> ${res.user_name} (${res.user_email})</p>
                         <p><strong>Date:</strong> ${new Date(res.reservation_date).toLocaleString()}</p>
                     </div>
+                        <p><strong>Return Date:</strong> <span style="color: ${new Date(res.return_date) < new Date() ? '#d9534f' : '#5cb85c'};">${new Date(res.return_date).toLocaleDateString()}</span> ${new Date(res.return_date) < new Date() ? '⚠️ OVERDUE' : ''}</p>
                     <button class="btn btn-secondary" onclick="returnBook(${res.book_id})">
                         Return Book
                     </button>
