@@ -402,6 +402,8 @@
                 <button class="filter-btn" onclick="filterByCategory('Science Fiction')">Sci-Fi</button>
                 <button class="filter-btn" onclick="filterByCategory('Romance')">Romance</button>
                 <button class="filter-btn" onclick="filterByCategory('Adventure')">Adventure</button>
+                <button class="filter-btn" onclick="filterByCategory('Comic Books')">Comic Books</button>
+                <button class="filter-btn" onclick="filterByCategory('Picture Books')">Picture Books</button>
             </div>
 
             <div id="books-grid" class="books-grid"></div>
@@ -587,9 +589,21 @@
             {id: 143, title: 'The Book Thief (YA)', author: 'Markus Zusak', isbn: '978-0-37-584263-6', category: 'Fiction', ageGroup: 'Kids (13+)', description: 'A girl in Nazi Germany finds solace in stolen books.', rating: 4.38, available: true},
             {id: 144, title: 'Twilight', author: 'Stephenie Meyer', isbn: '978-0-31-616017-9', category: 'Romance', ageGroup: 'Kids (13+)', description: 'A girl falls in love with a vampire.', rating: 3.67, available: true},
             {id: 145, title: 'The 5th Wave', author: 'Rick Yancey', isbn: '978-0-39-915924-7', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'Earth faces alien invasion in waves.', rating: 4.00, available: true}
+            {id: 146, title: "Calvin and Hobbes", author: "Bill Watterson", isbn: "978-0-83-895403-2", category: "Comic Books", ageGroup: "Kids (6-8)", description: "The adventures of a boy and his stuffed tiger.", rating: 4.73, available: true},
+            {id: 147, title: "Watchmen", author: "Alan Moore", isbn: "978-1-40-123774-9", category: "Comic Books", ageGroup: "Adults", description: "Groundbreaking graphic novel about flawed superheroes.", rating: 4.39, available: true},
+            {id: 148, title: "Maus", author: "Art Spiegelman", isbn: "978-0-14-101473-0", category: "Comic Books", ageGroup: "Adults", description: "Pulitzer-winning Holocaust story told through comics.", rating: 4.58, available: true},
+            {id: 149, title: "Persepolis", author: "Marjane Satrapi", isbn: "978-0-37-571457-3", category: "Comic Books", ageGroup: "Kids (13+)", description: "Autobiography of a girl growing up in Iran.", rating: 4.40, available: true},
+            {id: 150, title: "The Sandman Vol. 1", author: "Neil Gaiman", isbn: "978-1-56-389011-4", category: "Comic Books", ageGroup: "Adults", description: "Dark fantasy about the Lord of Dreams.", rating: 4.40, available: true},
+            {id: 151, title: "Batman: The Dark Knight Returns", author: "Frank Miller", isbn: "978-1-56-389342-9", category: "Comic Books", ageGroup: "Kids (13+)", description: "An older Batman comes out of retirement.", rating: 4.26, available: true},
+            {id: 152, title: "Bone", author: "Jeff Smith", isbn: "978-0-43-970640-2", category: "Comic Books", ageGroup: "Kids (9-12)", description: "Fantasy adventure with three Bone cousins.", rating: 4.19, available: true},
+            {id: 153, title: "Chicka Chicka Boom Boom", author: "Bill Martin Jr.", isbn: "978-1-48-147340-8", category: "Picture Books", ageGroup: "Kids (3-5)", description: "The alphabet comes alive in this rhythmic story.", rating: 4.26, available: true},
+            {id: 154, title: "Llama Llama Red Pajama", author: "Anna Dewdney", isbn: "978-0-67-012139-4", category: "Picture Books", ageGroup: "Kids (3-5)", description: "Baby Llama gets ready for bed.", rating: 4.31, available: true},
+            {id: 155, title: "Guess How Much I Love You", author: "Sam McBratney", isbn: "978-0-76-362313-2", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A bedtime story about love between parent and child.", rating: 4.39, available: true},
+            {id: 156, title: "Good Night, Gorilla", author: "Peggy Rathmann", isbn: "978-0-69-811649-8", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A mischievous gorilla follows the zookeeper home.", rating: 4.24, available: true},
+            {id: 157, title: "Where the Sidewalk Ends", author: "Shel Silverstein", isbn: "978-0-06-025667-8", category: "Picture Books", ageGroup: "Kids (6-8)", description: "Classic collection of poems and drawings.", rating: 4.35, available: true},
         ];
 
-        const DATA_VERSION = 9; // Increment this when book list changes
+        const DATA_VERSION = 10; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
