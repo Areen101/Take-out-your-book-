@@ -629,7 +629,7 @@
             {id: 179, title: "Olivia", author: "Ian Falconer", isbn: "978-0-68-982953-1", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A pig who is good at lots of things, especially wearing people out.", rating: 4.15, available: true},
         ];
 
-        const DATA_VERSION = 14; // Increment this when book list changes
+        const DATA_VERSION = 15; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -821,7 +821,7 @@
                 author: book.author,
                 user_name: userName,
                 user_email: userEmail,
-                reservation_date: new Date().toISOString()
+                reservation_date: new Date().toISOString(),
                 return_date: returnDate,
             };
 
