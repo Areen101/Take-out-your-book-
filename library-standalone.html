@@ -400,6 +400,7 @@
     <main class="container">
         <div class="tabs">
             <button class="tab-button active" onclick="showTab('books')">Available Books</button>
+            <button class="tab-button" onclick="showTab('reading')">My Reading</button>
             <button class="tab-button" onclick="showTab('reservations')">My Reservations</button>
         </div>
 
@@ -411,11 +412,11 @@
 
             <div class="filter-buttons">
                 <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                <button class="filter-btn" onclick="filterByAgeGroup('Adults')">Adults</button>
                 <button class="filter-btn" onclick="filterByAgeGroup('Kids (3-5)')">Kids (3-5)</button>
                 <button class="filter-btn" onclick="filterByAgeGroup('Kids (6-8)')">Kids (6-8)</button>
                 <button class="filter-btn" onclick="filterByAgeGroup('Kids (9-12)')">Kids (9-12)</button>
                 <button class="filter-btn" onclick="filterByAgeGroup('Kids (13+)')">Kids (13+)</button>
-                <button class="filter-btn" onclick="filterByAgeGroup('Adults')">Adults</button>
                 <button class="filter-btn" onclick="filterByCategory('Fiction')">Fiction</button>
                 <button class="filter-btn" onclick="filterByCategory('Fantasy')">Fantasy</button>
                 <button class="filter-btn" onclick="filterByCategory('Science Fiction')">Sci-Fi</button>
@@ -426,6 +427,17 @@
             </div>
 
             <div id="books-grid" class="books-grid"></div>
+        </div>
+
+        <!-- My Reading Tab -->
+        <div id="reading-tab" class="tab-content">
+            <div class="filter-buttons" style="margin-bottom: 2rem;">
+                <button class="filter-btn active" onclick="filterReading('all')">All</button>
+                <button class="filter-btn" onclick="filterReading('reading')">📖 Currently Reading</button>
+                <button class="filter-btn" onclick="filterReading('want')">⭐ Want to Read</button>
+                <button class="filter-btn" onclick="filterReading('finished')">✅ Finished</button>
+            </div>
+            <div id="reading-list" class="books-grid"></div>
         </div>
 
         <!-- Reservations Tab -->
@@ -649,7 +661,7 @@
 
         ];
 
-        const DATA_VERSION = 21; // Increment this when book list changes
+        const DATA_VERSION = 22; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -705,6 +717,8 @@
 
             if (tabName === 'reservations') {
                 loadReservations();
+            } else if (tabName === 'reading') {
+                loadReadingList();
             }
         }
 
@@ -744,6 +758,14 @@
                         </button>` :
                         `<button class="btn" disabled>Not Available</button>`
                     }
+                    <div style="margin-top: 1rem;">
+                        <select class="reading-status-select" onchange="updateReadingStatus(${book.id}, this.value)" style="width: 100%; padding: 0.7rem; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 0.9rem; background: white; cursor: pointer;">
+                            <option value="">📚 Add to My Reading</option>
+                            <option value="reading">📖 Currently Reading</option>
+                            <option value="want">⭐ Want to Read</option>
+                            <option value="finished">✅ Finished</option>
+                        </select>
+                    </div>
                 </div>
             `).join('');
         }
@@ -831,8 +853,8 @@
 
             const userName = document.getElementById('user-name').value;
             const userEmail = document.getElementById('user-email').value;
-
             const returnDate = document.getElementById('return-date').value;
+
             // Find the book
             const book = allBooks.find(b => b.id === selectedBookId);
             if (!book || !book.available) {
@@ -849,9 +871,9 @@
                 author: book.author,
                 user_name: userName,
                 user_email: userEmail,
-                reservation_date: new Date().toISOString()
-            };
+                reservation_date: new Date().toISOString(),
                 return_date: returnDate,
+            };
 
             reservations.push(reservation);
             saveReservations(reservations);
@@ -888,8 +910,8 @@
                         <p><strong>Author:</strong> ${res.author}</p>
                         <p><strong>Reserved by:</strong> ${res.user_name} (${res.user_email})</p>
                         <p><strong>Date:</strong> ${new Date(res.reservation_date).toLocaleString()}</p>
-                    </div>
                         <p><strong>Return Date:</strong> <span style="color: ${new Date(res.return_date) < new Date() ? '#d9534f' : '#5cb85c'};">${new Date(res.return_date).toLocaleDateString()}</span> ${new Date(res.return_date) < new Date() ? '⚠️ OVERDUE' : ''}</p>
+                    </div>
                     <button class="btn btn-secondary" onclick="returnBook(${res.book_id})">
                         Return Book
                     </button>
@@ -918,6 +940,129 @@
             alert('Book returned successfully!');
             displayBooks(allBooks);
             loadReservations();
+        }
+
+        // Reading Progress Functions
+        function getReadingProgress() {
+            const stored = localStorage.getItem('readingProgress');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        function saveReadingProgress(progress) {
+            localStorage.setItem('readingProgress', JSON.stringify(progress));
+        }
+
+        function updateReadingStatus(bookId, status) {
+            if (!status) return;
+
+            let progress = getReadingProgress();
+            const existingIndex = progress.findIndex(p => p.book_id === bookId);
+
+            // Handle remove option
+            if (status === 'remove') {
+                if (existingIndex >= 0) {
+                    progress.splice(existingIndex, 1);
+                    saveReadingProgress(progress);
+                    alert('Book removed from reading list!');
+
+                    const readingTab = document.getElementById('reading-tab');
+                    if (readingTab.classList.contains('active')) {
+                        loadReadingList();
+                    }
+                }
+                return;
+            }
+
+            if (existingIndex >= 0) {
+                progress[existingIndex].status = status;
+                progress[existingIndex].updated_date = new Date().toISOString();
+            } else {
+                progress.push({
+                    book_id: bookId,
+                    status: status,
+                    added_date: new Date().toISOString(),
+                    updated_date: new Date().toISOString()
+                });
+            }
+
+            saveReadingProgress(progress);
+            alert('Reading status updated!');
+
+            // Refresh the reading list if we're on that tab
+            const readingTab = document.getElementById('reading-tab');
+            if (readingTab.classList.contains('active')) {
+                loadReadingList();
+            }
+        }
+
+        function loadReadingList() {
+            const progress = getReadingProgress();
+            const readingBooks = progress.map(p => {
+                const book = allBooks.find(b => b.id === p.book_id);
+                return book ? { ...book, readingStatus: p.status, statusDate: p.updated_date } : null;
+            }).filter(b => b !== null);
+
+            displayReadingList(readingBooks);
+        }
+
+        function displayReadingList(books) {
+            const readingList = document.getElementById('reading-list');
+
+            if (books.length === 0) {
+                readingList.innerHTML = '<div class="empty-message">No books in your reading list yet!<br>Add books from the Available Books tab.</div>';
+                return;
+            }
+
+            readingList.innerHTML = books.map(book => `
+                <div class="book-card" data-category="${book.category}">
+                    <div class="book-content">
+                        <img src="https://covers.openlibrary.org/b/isbn/${book.isbn.replace(/[^0-9X]/g, '')}-M.jpg"
+                             alt="${book.title} cover"
+                             class="book-cover"
+                             onerror="this.style.display='none'">
+                        <div class="book-info">
+                            <h3>${book.title}</h3>
+                            <p class="author">by ${book.author}</p>
+                            ${book.rating ? `<div class="rating">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
+                            <div style="margin-top: 0.5rem;">
+                                <span class="status-badge" style="background: ${book.readingStatus === 'reading' ? '#d4edda' : book.readingStatus === 'finished' ? '#c3e6cb' : '#fff3cd'}; color: ${book.readingStatus === 'reading' ? '#155724' : book.readingStatus === 'finished' ? '#155724' : '#856404'};">
+                                    ${book.readingStatus === 'reading' ? '📖 Currently Reading' : book.readingStatus === 'finished' ? '✅ Finished' : '⭐ Want to Read'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="category">${book.category}</span>
+                    <span class="category" style="background: ${book.ageGroup.includes('Kids') ? '#e8f3e8' : '#e8e8e8'};">${book.ageGroup}</span>
+                    <p class="description">${book.description}</p>
+                    <div style="margin-top: 1rem;">
+                        <select class="reading-status-select" onchange="updateReadingStatus(${book.id}, this.value)" style="width: 100%; padding: 0.7rem; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 0.9rem; background: white; cursor: pointer;">
+                            <option value="">Change Status...</option>
+                            <option value="reading" ${book.readingStatus === 'reading' ? 'selected' : ''}>📖 Currently Reading</option>
+                            <option value="want" ${book.readingStatus === 'want' ? 'selected' : ''}>⭐ Want to Read</option>
+                            <option value="finished" ${book.readingStatus === 'finished' ? 'selected' : ''}>✅ Finished</option>
+                            <option value="remove">🗑️ Remove from List</option>
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterReading(status) {
+            const filterButtons = document.querySelectorAll('#reading-tab .filter-btn');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const progress = getReadingProgress();
+            let filteredBooks = progress.map(p => {
+                const book = allBooks.find(b => b.id === p.book_id);
+                return book ? { ...book, readingStatus: p.status, statusDate: p.updated_date } : null;
+            }).filter(b => b !== null);
+
+            if (status !== 'all') {
+                filteredBooks = filteredBooks.filter(b => b.readingStatus === status);
+            }
+
+            displayReadingList(filteredBooks);
         }
     </script>
 </body>
