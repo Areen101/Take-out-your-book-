@@ -25,7 +25,7 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(253, 251, 247, 0.95);
             padding: 2rem 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
@@ -43,7 +43,7 @@
         }
 
         main {
-            background: white;
+            background: #fdfbf7;
             border-radius: 10px;
             padding: 2rem;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -140,7 +140,7 @@
         }
 
         .book-card {
-            background: white;
+            background: #fffef9;
             border: 2px solid #c9b896;
             border-radius: 10px;
             padding: 1.5rem;
@@ -176,6 +176,7 @@
             color: #8ba888;
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
+            font-family: Georgia, 'Times New Roman', serif;
         }
 
         .book-card .author {
@@ -271,7 +272,7 @@
         }
 
         .modal-content {
-            background: white;
+            background: #fdfbf7;
             margin: 10% auto;
             padding: 2rem;
             border-radius: 10px;
@@ -362,7 +363,7 @@
         }
 
         footer {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(253, 251, 247, 0.95);
             padding: 1.5rem 0;
             text-align: center;
             color: #666;
@@ -393,7 +394,7 @@
     <header>
         <div class="container">
             <h1>📚 Library Book Reservation System</h1>
-            <p class="subtitle">Browse and reserve your favorite books</p>
+            <p class="subtitle" id="greeting-subtitle">Browse and reserve your favorite books</p>
         </div>
     </header>
 
@@ -697,11 +698,28 @@
             localStorage.setItem('libraryReservations', JSON.stringify(reservations));
         }
 
+        // Time-based greeting
+        function setGreeting() {
+            const hour = new Date().getHours();
+            const subtitle = document.getElementById('greeting-subtitle');
+
+            if (hour >= 5 && hour < 12) {
+                subtitle.textContent = 'Good morning! Browse and reserve your favorite books';
+            } else if (hour >= 12 && hour < 17) {
+                subtitle.textContent = 'Good afternoon! Browse and reserve your favorite books';
+            } else if (hour >= 17 && hour < 21) {
+                subtitle.textContent = 'Good evening! Browse and reserve your favorite books';
+            } else {
+                subtitle.textContent = 'Good night! Browse and reserve your favorite books';
+            }
+        }
+
         // Load on page load
         document.addEventListener('DOMContentLoaded', () => {
             initializeData();
             displayBooks(allBooks);
             loadReservations();
+            setGreeting();
         });
 
         // Tab switching
