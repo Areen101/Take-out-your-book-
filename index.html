@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff8fab 0%, #ffc3d5 100%);
+            background: linear-gradient(135deg, #a8c5a4 0%, #c8dcc6 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -32,7 +32,7 @@
         }
 
         header h1 {
-            color: #ff6b9d;
+            color: #8ba888;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
@@ -70,12 +70,12 @@
         }
 
         .tab-button:hover {
-            color: #ff6b9d;
+            color: #8ba888;
         }
 
         .tab-button.active {
-            color: #ff6b9d;
-            border-bottom-color: #ff6b9d;
+            color: #8ba888;
+            border-bottom-color: #8ba888;
         }
 
         .tab-content {
@@ -101,7 +101,7 @@
 
         .search-bar input:focus {
             outline: none;
-            border-color: #ff6b9d;
+            border-color: #8ba888;
         }
 
         .filter-buttons {
@@ -122,15 +122,15 @@
         }
 
         .filter-btn:hover {
-            background: #ff6b9d;
+            background: #8ba888;
             color: white;
-            border-color: #ff6b9d;
+            border-color: #8ba888;
         }
 
         .filter-btn.active {
-            background: #ff6b9d;
+            background: #8ba888;
             color: white;
-            border-color: #ff6b9d;
+            border-color: #8ba888;
         }
 
         .books-grid {
@@ -150,11 +150,11 @@
         .book-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
-            border-color: #ff6b9d;
+            border-color: #8ba888;
         }
 
         .book-card h3 {
-            color: #ff6b9d;
+            color: #8ba888;
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
         }
@@ -179,7 +179,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             margin-bottom: 0.5rem;
-            color: #ff6b9d;
+            color: #8ba888;
         }
 
         .book-card .description {
@@ -218,7 +218,7 @@
         }
 
         .btn-primary {
-            background: #ff6b9d;
+            background: #8ba888;
             color: white;
         }
 
@@ -306,7 +306,7 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: #ff6b9d;
+            border-color: #8ba888;
         }
 
         .reservations-list {
@@ -326,7 +326,7 @@
         }
 
         .reservation-info h3 {
-            color: #ff6b9d;
+            color: #8ba888;
             margin-bottom: 0.5rem;
         }
 
@@ -629,7 +629,7 @@
             {id: 179, title: "Olivia", author: "Ian Falconer", isbn: "978-0-68-982953-1", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A pig who is good at lots of things, especially wearing people out.", rating: 4.15, available: true},
         ];
 
-        const DATA_VERSION = 15; // Increment this when book list changes
+        const DATA_VERSION = 16; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -703,7 +703,7 @@
                     <p class="author">by ${book.author}</p>
                     ${book.rating ? `<div class="rating">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
                     <span class="category">${book.category}</span>
-                    <span class="category" style="background: ${book.ageGroup.includes('Kids') ? '#ffe4f2' : '#e8e8e8'};">${book.ageGroup}</span>
+                    <span class="category" style="background: ${book.ageGroup.includes('Kids') ? '#e8f3e8' : '#e8e8e8'};">${book.ageGroup}</span>
                     <p class="description">${book.description}</p>
                     <div class="status">
                         <span class="status-badge ${book.available ? 'available' : 'reserved'}">
@@ -774,7 +774,7 @@
 
             modalInfo.innerHTML = `
                 <div style="background: #f9f9f9; padding: 1rem; border-radius: 5px; margin-bottom: 1.5rem;">
-                    <h3 style="color: #ff6b9d; margin-bottom: 0.5rem;">${title}</h3>
+                    <h3 style="color: #8ba888; margin-bottom: 0.5rem;">${title}</h3>
                     <p style="color: #666;">by ${author}</p>
                 </div>
             `;
