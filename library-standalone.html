@@ -153,6 +153,25 @@
             border-color: #8ba888;
         }
 
+        .book-content {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-cover {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
         .book-card h3 {
             color: #8ba888;
             margin-bottom: 0.5rem;
@@ -163,6 +182,13 @@
             color: #666;
             font-style: italic;
             margin-bottom: 0.5rem;
+        }
+
+        .book-card .rating {
+            color: #ffd700;
+            font-size: 1.1em;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
         }
 
         .book-card .category {
@@ -623,7 +649,7 @@
 
         ];
 
-        const DATA_VERSION = 19; // Increment this when book list changes
+        const DATA_VERSION = 20; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -693,10 +719,19 @@
 
             booksGrid.innerHTML = books.map(book => `
                 <div class="book-card" data-category="${book.category}">
-                    <h3>${book.title}</h3>
-                    <p class="author">by ${book.author}</p>
+                    <div class="book-content">
+                        <img src="https://covers.openlibrary.org/b/isbn/${book.isbn.replace(/[^0-9X]/g, '')}-M.jpg"
+                             alt="${book.title} cover"
+                             class="book-cover"
+                             onerror="this.src='https://via.placeholder.com/80x120/c9b896/ffffff?text=No+Cover'">
+                        <div class="book-info">
+                            <h3>${book.title}</h3>
+                            <p class="author">by ${book.author}</p>
+                            ${book.rating ? `<div class="rating">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
+                        </div>
+                    </div>
                     <span class="category">${book.category}</span>
-                    <span class="category" style="background: ${book.ageGroup === 'Kids' ? '#e8f3e8' : '#e8e8e8'};">${book.ageGroup === 'Kids' ? 'Kids' : 'Adults'}</span>
+                    <span class="category" style="background: ${book.ageGroup.includes('Kids') ? '#e8f3e8' : '#e8e8e8'};">${book.ageGroup}</span>
                     <p class="description">${book.description}</p>
                     <div class="status">
                         <span class="status-badge ${book.available ? 'available' : 'reserved'}">
