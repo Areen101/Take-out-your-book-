@@ -649,7 +649,7 @@
 
         ];
 
-        const DATA_VERSION = 20; // Increment this when book list changes
+        const DATA_VERSION = 21; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -723,7 +723,7 @@
                         <img src="https://covers.openlibrary.org/b/isbn/${book.isbn.replace(/[^0-9X]/g, '')}-M.jpg"
                              alt="${book.title} cover"
                              class="book-cover"
-                             onerror="this.src='https://via.placeholder.com/80x120/c9b896/ffffff?text=No+Cover'">
+                             onerror="this.style.display='none'">
                         <div class="book-info">
                             <h3>${book.title}</h3>
                             <p class="author">by ${book.author}</p>
