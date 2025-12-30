@@ -447,6 +447,14 @@
         </div>
     </main>
 
+    <!-- Book Details Modal -->
+    <div id="book-details-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeBookDetails()">&times;</span>
+            <div id="book-details-content"></div>
+        </div>
+    </div>
+
     <!-- Reservation Modal -->
     <div id="reservation-modal" class="modal">
         <div class="modal-content">
@@ -555,13 +563,13 @@
             {id: 73, title: "Guess How Much I Love You", author: "Sam McBratney", isbn: "978-0-76-362313-2", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A bedtime story about love between parent and child.", rating: 4.39, available: true},
             {id: 74, title: 'The Handmaid\'s Tale', author: 'Margaret Atwood', isbn: '978-0-38-549081-8', category: 'Fiction', ageGroup: 'Adults', description: 'A chilling dystopian vision.', available: true},
             {id: 75, title: "Harold and the Purple Crayon", author: "Crockett Johnson", isbn: "978-0-06-443022-8", category: "Picture Books", ageGroup: "Kids (3-5)", description: "A boy draws his own adventure with a purple crayon.", rating: 4.28, available: true},
-            {id: 76, title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', isbn: '978-0-7475-3269-9', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: "A young wizard's journey begins.", rating: 4.5, available: true},
+            {id: 76, title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', isbn: '978-0-7475-3269-9', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: "A young wizard's journey begins.", summary: "Harry Potter has never been the star of a Quidditch team, scoring points while riding a broom far above the ground. He knows no spells, has never helped to hatch a dragon, and has never worn a cloak of invisibility. All he knows is a miserable life with the Dursleys, his horrible aunt and uncle, and their abominable son, Dudley. Harry's room is a tiny closet at the foot of the stairs, and he hasn't had a birthday party in eleven years. But all that is about to change when a mysterious letter arrives by owl messenger: a letter with an invitation to an incredible place that Harry — and anyone who reads about him — will find unforgettable. For it's there that he finds not only friends, aerial sports, and magic in everything from classes to meals, but a great destiny that's been waiting for him... if Harry can survive the encounter.", rating: 4.5, available: true},
             {id: 77, title: 'Hatchet', author: 'Gary Paulsen', isbn: '978-1-41-690647-2', category: 'Adventure', ageGroup: 'Kids (9-12)', description: 'A boy survives alone in the wilderness after a plane crash.', rating: 3.61, available: true},
             {id: 78, title: 'The Help', author: 'Kathryn Stockett', isbn: '978-0-42-523220-8', category: 'Fiction', ageGroup: 'Adults', description: 'African American maids in 1960s Mississippi tell their stories.', available: true},
             {id: 79, title: 'The Hitchhiker\'s Guide to the Galaxy', author: 'Douglas Adams', isbn: '978-0-34-539180-3', category: 'Science Fiction', ageGroup: 'Adults', description: 'A hilarious journey through space.', available: true},
-            {id: 80, title: 'The Hobbit', author: 'J.R.R. Tolkien', isbn: '978-0-547-92822-7', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A fantasy adventure of Bilbo Baggins.', rating: 4.3, available: true},
+            {id: 80, title: 'The Hobbit', author: 'J.R.R. Tolkien', isbn: '978-0-547-92822-7', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A fantasy adventure of Bilbo Baggins.', summary: "Bilbo Baggins is a hobbit who enjoys a comfortable, unambitious life, rarely traveling any farther than his pantry or cellar. But his contentment is disturbed when the wizard Gandalf and a company of dwarves arrive on his doorstep one day to whisk him away on an adventure. They have launched a plot to raid the treasure hoard guarded by Smaug the Magnificent, a large and very dangerous dragon. Bilbo reluctantly joins their quest, unaware that on his journey to the Lonely Mountain he will encounter both a magic ring and a frightening creature known as Gollum.", rating: 4.3, available: true},
             {id: 81, title: 'Holes', author: 'Louis Sachar', isbn: '978-0-44-042865-9', category: 'Adventure', ageGroup: 'Kids (9-12)', description: 'A boy sent to a desert detention center uncovers a mystery.', rating: 4.0, available: true},
-            {id: 82, title: 'The Hunger Games', author: 'Suzanne Collins', isbn: '978-0-43-902348-9', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'Teens fight to the death in a televised spectacle.', rating: 4.5, available: true},
+            {id: 82, title: 'The Hunger Games', author: 'Suzanne Collins', isbn: '978-0-43-902348-9', category: 'Science Fiction', ageGroup: 'Kids (13+)', description: 'Teens fight to the death in a televised spectacle.', summary: "In the ruins of a place once known as North America lies the nation of Panem, a shining Capitol surrounded by twelve outlying districts. The Capitol is harsh and cruel and keeps the districts in line by forcing them all to send one boy and one girl between the ages of twelve and eighteen to participate in the annual Hunger Games, a fight to the death on live TV. Sixteen-year-old Katniss Everdeen regards it as a death sentence when she steps forward to take her sister's place in the Games. But Katniss has been close to dead before—and survival, for her, is second nature. Without really meaning to, she becomes a contender.", rating: 4.5, available: true},
             {id: 83, title: 'If You Give a Mouse a Cookie', author: 'Laura Numeroff', isbn: '978-0-06-024587-8', category: 'Fiction', ageGroup: 'Kids (3-5)', description: 'One thing leads to another in this circular tale.', rating: 4.29, available: true},
             {id: 84, title: 'The Indian in the Cupboard', author: 'Lynne Reid Banks', isbn: '978-0-38-017051-5', category: 'Fantasy', ageGroup: 'Kids (9-12)', description: 'A toy Indian comes to life in a magic cupboard.', rating: 3.93, available: true},
             {id: 85, title: 'Into the Wild', author: 'Jon Krakauer', isbn: '978-0-38-572178-7', category: 'Adventure', ageGroup: 'Adults', description: 'A young man\'s fatal journey into the Alaskan wilderness.', available: true},
@@ -662,7 +670,7 @@
 
         ];
 
-        const DATA_VERSION = 22; // Increment this when book list changes
+        const DATA_VERSION = 23; // Increment this when book list changes
         let allBooks = [];
         let currentFilter = 'all';
         let selectedBookId = null;
@@ -757,7 +765,7 @@
                              class="book-cover"
                              onerror="this.style.display='none'">
                         <div class="book-info">
-                            <h3>${book.title}</h3>
+                            <h3 style="cursor: pointer; text-decoration: underline; text-decoration-style: dotted;" onclick="openBookDetails(${book.id})">${book.title}</h3>
                             <p class="author">by ${book.author}</p>
                             ${book.rating ? `<div class="rating">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
                         </div>
@@ -1039,7 +1047,7 @@
                              class="book-cover"
                              onerror="this.style.display='none'">
                         <div class="book-info">
-                            <h3>${book.title}</h3>
+                            <h3 style="cursor: pointer; text-decoration: underline; text-decoration-style: dotted;" onclick="openBookDetails(${book.id})">${book.title}</h3>
                             <p class="author">by ${book.author}</p>
                             ${book.rating ? `<div class="rating">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
                             <div style="margin-top: 0.5rem;">
@@ -1082,6 +1090,68 @@
 
             displayReadingList(filteredBooks);
         }
+
+        // Book Details Modal Functions
+        function openBookDetails(bookId) {
+            const book = allBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            const modal = document.getElementById('book-details-modal');
+            const content = document.getElementById('book-details-content');
+
+            content.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="https://covers.openlibrary.org/b/isbn/${book.isbn.replace(/[^0-9X]/g, '')}-L.jpg"
+                         alt="${book.title} cover"
+                         style="max-width: 200px; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);"
+                         onerror="this.style.display='none'">
+                </div>
+
+                <h2 style="font-family: Georgia, 'Times New Roman', serif; color: #8ba888; margin-bottom: 1rem;">${book.title}</h2>
+
+                <p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1rem;">by ${book.author}</p>
+
+                ${book.rating ? `<div style="color: #ffd700; font-size: 1.2em; margin-bottom: 1rem;">${'★'.repeat(Math.floor(book.rating))}${'☆'.repeat(5 - Math.floor(book.rating))} <span style="font-size: 0.9em; color: #666;">(${book.rating})</span></div>` : ''}
+
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="category" style="margin-right: 0.5rem;">${book.category}</span>
+                    <span class="category" style="background: ${book.ageGroup.includes('Kids') ? '#e8f3e8' : '#e8e8e8'};">${book.ageGroup}</span>
+                </div>
+
+                <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #8ba888;">
+                    <h3 style="color: #8ba888; margin-bottom: 0.5rem; font-size: 1.1rem;">Description</h3>
+                    <p style="color: #666; line-height: 1.6;">${book.description}</p>
+                </div>
+
+                ${book.summary ? `
+                    <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #c9b896;">
+                        <h3 style="color: #8ba888; margin-bottom: 0.5rem; font-size: 1.1rem;">Summary</h3>
+                        <p style="color: #666; line-height: 1.8;">${book.summary}</p>
+                    </div>
+                ` : ''}
+
+                <div style="margin-top: 2rem;">
+                    <span class="status-badge ${book.available ? 'available' : 'reserved'}" style="font-size: 1rem; padding: 0.6rem 1.2rem;">
+                        ${book.available ? '✓ Available for Reservation' : '✗ Currently Reserved'}
+                    </span>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        function closeBookDetails() {
+            const modal = document.getElementById('book-details-modal');
+            modal.style.display = 'none';
+        }
+
+        // Close book details modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('book-details-modal');
+            if (event.target === modal) {
+                closeBookDetails();
+            }
+        });
     </script>
 </body>
 </html>
